@@ -43,13 +43,13 @@ const Login = () => {
         ))}
       </div>
 
-      <Card className="absolute bottom-0 left-0  right-0 w-[100%]  mx-auto rounded-t-[300px] rounded-b-none border-none h-[500px] columns-1 flex flex-col items-center">
-        <CardHeader className="mt-10 mb-5">
-          <CardTitle className="w-full flex justify-center items-center gap-x-2 mb-5">
-            <Image src={logo} alt="Vibesnap" width={50} height={50} />
-            <p className="text-[40px]">Vibesnap</p>
+      <Card className="absolute bottom-0 left-0  right-0 w-[100%]  mx-auto xl:rounded-t-[300px] sm:rounded-t-[200px] xs:rounded-t-[80px] rounded-b-none border-none xl:h-[500px] lg:h-[400px] sm:h-[300px] xs:h-[250px] columns-1 flex flex-col items-center">
+        <CardHeader className="lg:mt-10 sm:mt-5 sm:mb-5 ">
+          <CardTitle className="w-full flex justify-center items-center gap-x-2 lg:mb-5 sm:mb-3">
+            <Image src={logo} alt="Vibesnap" width={50} height={50} className="xs:w-[30px]"/>
+            <p className="sm:text-[40px] xs:text-[24px]">Vibesnap</p>
           </CardTitle>
-          <CardDescription className="text-[24px] text-black">
+          <CardDescription className="md:text-[24px] s:text-[14px] text-black">
             Moments That Matter, Shared Forever.
           </CardDescription>
         </CardHeader>
@@ -60,12 +60,12 @@ const Login = () => {
               buttonVariants({
                 size: "lg",
                 className:
-                  "text-lg 2xl:text-lg xl:text-[15px] rounded-[50px] h-14 w-[25%]  bg-black dark:text-white hover:dark:text-black",
+                  "text-lg 2xl:text-lg xl:text-[15px] rounded-[50px] h-14 lg:w-[25%] sm:w-[50%]  bg-black dark:text-white hover:dark:text-black",
               })
             )}
           >
             <Image src={google} alt="google logo" width={30} height={30} />
-            Continue with Google
+            <p className="xs:text-sm">Continue with Google</p>
           </Link>
         </CardContent>
       </Card>
