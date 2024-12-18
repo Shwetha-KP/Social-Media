@@ -268,10 +268,13 @@ const UserProfile = () => {
             width={50}
             height={50}
           />
+          <div className="absolute top-5 left-3 flex justify-center items-center">
           <HiArrowSmLeft
             onClick={handleGoBack}
-            className="absolute top-5 left-3 text-white text-[40px] cursor-pointer"
+            className=" text-white text-[40px] cursor-pointer"
           />
+          <p className="ml-4 text-[30px] text-white xs:text-[22px]">Edit Profile</p>
+          </div>
           <div className="flex flex-col justify-center items-center w-[40px] h-[40px] rounded-full bg-[#F4F4F4] absolute bottom-[100px] right-5 cursor-pointer" onClick={openEditModal}>
             <HiPencil className="cursor-pointer"/> 
           </div>
@@ -292,7 +295,7 @@ const UserProfile = () => {
         </div>
       </div>
 
-          <form onSubmit={handleSaveChanges} className="w-[90%] mt-10">
+          <form onSubmit={handleSaveChanges} className="w-[90%] mt-10 ">
               <div className="mb-4">
                 <label className="block text-base font-medium text-gray-500 mb-2 ">Name</label>
                 <input
