@@ -4,8 +4,7 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
 import { FaHeart } from "react-icons/fa";
-import { HiArrowSmLeft } from "react-icons/hi";
-import { HiPencil } from "react-icons/hi";
+import { HiArrowSmLeft, HiPencil } from "react-icons/hi";
 import { useRouter } from "next/navigation";
 
 const UserProfile = () => {
@@ -20,39 +19,29 @@ const UserProfile = () => {
   const [selectedImage, setSelectedImage] = useState(null);
 
   const router = useRouter();
+
   const handleGoBack = () => {
     router.back();
   };
+
   const handleGoBackToUserProfile = () => {
     setIsEditModalOpen(false);
   };
+
   const handleImageClick = (image) => {
     setSelectedImage(image);
     setIsModalOpen(true);
   };
+
   const closeModal = () => {
     setIsModalOpen(false);
     setSelectedImage(null);
   };
+
   const postData = [
-    {
-      id: 1,
-      image: "/assets/mypost1.jpg",
-      postContent: "Design Meet",
-      like: 67,
-    },
-    {
-      id: 2,
-      image: "/assets/mypost3.jpg",
-      postContent: "Working on a B2B...",
-      like: 65,
-    },
-    {
-      id: 3,
-      image: "/assets/mypost2.jpg",
-      postContent: "Parachute ❤️",
-      like: 65,
-    },
+    { id: 1, image: "/assets/mypost1.jpg", postContent: "Design Meet", like: 67 },
+    { id: 2, image: "/assets/mypost3.jpg", postContent: "Working on a B2B...", like: 65 },
+    { id: 3, image: "/assets/mypost2.jpg", postContent: "Parachute ❤️", like: 65 },
   ];
 
   const openEditModal = () => {
@@ -67,14 +56,16 @@ const UserProfile = () => {
     e.preventDefault();
     const formData = new FormData(e.target);
 
-    const newProfileImage = formData.get("profileImage") || "";
-    const newName = formData.get("name") || "";
+    const newName = formData.get("name") || name;
+    const newBio = formData.get("bio") || bio;
 
-    setProfileImage(newProfileImage);
     setName(newName);
+    setBio(newBio);
 
-    localStorage.setItem("profileImage", newProfileImage);
+    localStorage.setItem("profileImage", profileImage);
+    localStorage.setItem("coverImage", coverImage);
     localStorage.setItem("name", newName);
+    localStorage.setItem("bio", newBio);
 
     closeEditModal();
   };
@@ -91,6 +82,32 @@ const UserProfile = () => {
     if (savedName) setName(savedName);
   }, []);
 
+  const handleProfileImageChange = (event) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        if (typeof reader.result === "string") {
+          setProfileImage(reader.result);
+        }
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleCoverImageChange = (event) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        if (typeof reader.result === "string") {
+          setCoverImage(reader.result);
+        }
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
   return (
     <section className="dark:bg-gray-800 flex flex-wrap items-center justify-center relative">
       {!isEditModalOpen && (
@@ -103,7 +120,7 @@ const UserProfile = () => {
                 alt="cover image"
                 width={50}
                 height={50}
-                onClick={()=>handleImageClick(coverImage)}
+                onClick={() => handleImageClick(coverImage)}
               />
               <HiArrowSmLeft
                 onClick={handleGoBack}
@@ -118,7 +135,7 @@ const UserProfile = () => {
                   alt="profile image"
                   width={50}
                   height={50}
-                  onClick={()=>handleImageClick(profileImage)}
+                  onClick={() => handleImageClick(profileImage)}
                 />
               </div>
               <div className="flex flex-col justify-end sm:mb-4 xs:mb-6">
@@ -139,35 +156,30 @@ const UserProfile = () => {
           <div className="sm:w-[95%] xs:w-[90%] mt-8">
             <h2 className="text-[24px] font-bold mb-5">My Posts</h2>
             <div className="grid grid-cols-2 gap-3 mb-20">
-              {postData.map((posts) => {
-                return (
+              {postData.map((posts) => (
+                <div key={posts.id} className="mb-4 break-inside-avoid relative">
                   <div
-                    key={posts.id}
-                    className="mb-4 break-inside-avoid relative"
+                    className="relative w-full xl:w-[70%]"
+                    onClick={() => handleImageClick(posts.image)}
                   >
-                    <div
-                      className="relative w-full xl:w-[70%]"
-                      onClick={() => handleImageClick(posts.image)}
-                    >
-                      <Image
-                        src={posts.image}
-                        alt="images"
-                        width={500}
-                        height={500}
-                        className="w-full h-auto object-contain rounded-lg bg-black z-10 backdrop-blur-md"
-                      />
-                      <div className="absolute inset-0 bg-black bg-opacity-30 rounded-lg z-0"></div>
-                      <p className="absolute bottom-10 left-6 xs:left-3 text-white z-20">
-                        {posts.postContent}
-                      </p>
-                      <div className="flex items-center gap-x-1 absolute bottom-5 left-6 xs:left-3 text-gray-300">
-                        <FaHeart />
-                        <p>{posts.like}</p>
-                      </div>
+                    <Image
+                      src={posts.image}
+                      alt="images"
+                      width={500}
+                      height={500}
+                      className="w-full h-auto object-contain rounded-lg bg-black z-10 backdrop-blur-md"
+                    />
+                    <div className="absolute inset-0 bg-black bg-opacity-30 rounded-lg z-0"></div>
+                    <p className="absolute bottom-10 left-6 xs:left-3 text-white z-20">
+                      {posts.postContent}
+                    </p>
+                    <div className="flex items-center gap-x-1 absolute bottom-5 left-6 xs:left-3 text-gray-300">
+                      <FaHeart />
+                      <p>{posts.like}</p>
                     </div>
                   </div>
-                );
-              })}
+                </div>
+              ))}
             </div>
           </div>
 
@@ -198,7 +210,6 @@ const UserProfile = () => {
       )}
 
       {isEditModalOpen && (
-       
         <>
           <div className="w-full bg-white transform duration-200 easy-in-out">
             <div className="w-full sm:h-[300px] xs:h-[200px] overflow-hidden lg:rounded-b-[60px] xs:rounded-b-[40px] sm:rounded-b-[30px]">
@@ -218,26 +229,41 @@ const UserProfile = () => {
                   Edit Profile
                 </p>
               </div>
-              <div
-                className="cursor-pointer flex flex-col justify-center items-center w-[40px] h-[40px] rounded-full bg-[#F4F4F4] absolute bottom-[100px] right-5 "
-                
-              >
-                <HiPencil />
-              </div>
+              <label htmlFor="coverImageInput">
+                <div className="cursor-pointer flex flex-col justify-center items-center w-[40px] h-[40px] rounded-full bg-[#F4F4F4] absolute bottom-[120px] right-8  xs:bottom-[125px]">
+                  <HiPencil />
+                </div>
+              </label>
+              <input
+                type="file"
+                id="coverImageInput"
+                className="hidden"
+                accept="image/*"
+                onChange={handleCoverImageChange}
+              />
             </div>
             <div className="flex justify-start px-5 -mt-14 relative">
-              <div className="">
+              <div>
                 <Image
-                  className="h-36 w-36 bg-white p-2 rounded-full object-cover "
+                  className="h-36 w-36 bg-white p-2 rounded-full object-cover"
                   src={profileImage}
                   alt="profile image"
                   width={50}
                   height={50}
                 />
               </div>
-              <div className="flex flex-col justify-center items-center w-[40px] h-[40px] rounded-full bg-[#F4F4F4] absolute bottom-2 left-[120px] cursor-pointer">
-                <HiPencil />
-              </div>
+              <label htmlFor="profileImageInput">
+                <div className="flex flex-col justify-center items-center w-[40px] h-[40px] rounded-full bg-[#F4F4F4] absolute bottom-2 left-[120px] cursor-pointer">
+                  <HiPencil />
+                </div>
+              </label>
+              <input
+                type="file"
+                id="profileImageInput"
+                className="hidden"
+                accept="image/*"
+                onChange={handleProfileImageChange}
+              />
             </div>
           </div>
 
