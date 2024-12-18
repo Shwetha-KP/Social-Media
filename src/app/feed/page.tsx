@@ -265,9 +265,11 @@ const FeedPage = () => {
             </Card>
           );
         })}
+        <Link href="/createPost">
         <div className="w-[50px] rounded-full bg-black grid justify-center items-center h-[50px]  bottom-4 right-4 fixed z-10">
           <Plus color="#ffffff" className="text-[24px] cursor-pointer" />
         </div>
+        </Link>
       </div>
     </section>
   );

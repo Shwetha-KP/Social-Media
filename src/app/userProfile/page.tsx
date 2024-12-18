@@ -16,7 +16,7 @@ const UserProfile = () => {
   const [name, setName] = useState("Sakshi Agarwal");
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedImage, setSelectedImage] = useState(null);
+  const [selectedImage, setSelectedImage] = useState(0);
 
   const router = useRouter();
 
@@ -293,7 +293,7 @@ const UserProfile = () => {
             </div>
             <div className="flex justify-end gap-2">
               <Button type="submit" className=" w-full rounded-[30px]">
-                Save
+                SAVE
               </Button>
             </div>
           </form>
