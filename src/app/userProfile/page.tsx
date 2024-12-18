@@ -146,7 +146,7 @@ const UserProfile = () => {
               alt="Full screen image"
               width={800}
               height={800}
-              className="object-contain xs:w-[800px] sm:w-[800px] xl:w-[400px]"
+              className="object-contain xs:w-[800px] sm:w-[800px] xl:w-[300px] 2xl:w-[400px]"
             />
           </div>
         </div>
