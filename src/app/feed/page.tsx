@@ -25,7 +25,7 @@ import Image from "next/image";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import { IoMdShareAlt } from "react-icons/io";
 
-const profileImage = "/assets/profileImage.jpg";
+
 const aaravProfile = "/assets/aaravProfile.jpg";
 const snehaProfile = "/assets/snehaProfile.jpg";
 const janeProfile = "/assets/image6.jpg";
@@ -102,7 +102,9 @@ const cardData = [
 
 const FeedPage = () => {
   const [cards, setCards] = useState(cardData);
-
+    const [profileImage, setProfileImage] = useState("/assets/profileImage.jpg");
+    const [name, setName] = useState("Sakshi Agarwal");
+  
   const handleLike = (id) => {
     const updatedCards = cards.map((card) => {
       if (card.id === id) {
@@ -131,7 +133,7 @@ const FeedPage = () => {
               href="/userProfile"
               className="text-2xl font-bold cursor-pointer xs:text-sm"
             >
-              Sakshi Agarwal
+              {name}
             </Link>
           </div>
         </div>

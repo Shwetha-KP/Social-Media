@@ -68,6 +68,7 @@ const UserProfile = () => {
     localStorage.setItem("bio", newBio);
 
     closeEditModal();
+   
   };
 
   useEffect(() => {
