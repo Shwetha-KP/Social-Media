@@ -23,7 +23,9 @@ const UserProfile = () => {
   const handleGoBack = () => {
     router.back();
   };
-
+  const handleGoBackToUserProfile=()=>{
+    setIsEditModalOpen(false);
+  }
   const handleImageClick = (image) => {
     setSelectedImage(image);
     setIsModalOpen(true);
@@ -74,7 +76,7 @@ const UserProfile = () => {
     setProfileImage(newProfileImage);
     setName(newName);
   
-    // Update localStorage
+    
     localStorage.setItem("profileImage", newProfileImage);
     localStorage.setItem("name", newName);
   
@@ -82,7 +84,7 @@ const UserProfile = () => {
   };
   
 
-  // Load from localStorage on component mount
+
   useEffect(() => {
     const savedProfileImage = localStorage.getItem("profileImage");
     const savedCoverImage = localStorage.getItem("coverImage");
@@ -195,7 +197,7 @@ const UserProfile = () => {
       )}
 </>
       )}
-      {/* Edit Profile Modal */}
+
       {isEditModalOpen && (
         // <div className="fixed inset-0 bg-black bg-opacity-75 flex justify-center items-center z-20">
         //   <div className="bg-white p-6 rounded-lg w-[90%] sm:w-[50%]">
@@ -270,7 +272,7 @@ const UserProfile = () => {
           />
           <div className="absolute top-5 left-3 flex justify-center items-center">
           <HiArrowSmLeft
-            onClick={handleGoBack}
+            onClick={handleGoBackToUserProfile}
             className=" text-white text-[40px] cursor-pointer"
           />
           <p className="ml-4 text-[30px] text-white xs:text-[22px]">Edit Profile</p>
@@ -295,7 +297,7 @@ const UserProfile = () => {
         </div>
       </div>
 
-          <form onSubmit={handleSaveChanges} className="w-[90%] mt-10 ">
+          <form onSubmit={handleSaveChanges} className="w-[90%] mt-10 mb-10">
               <div className="mb-4">
                 <label className="block text-base font-medium text-gray-500 mb-2 ">Name</label>
                 <input
