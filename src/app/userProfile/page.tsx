@@ -6,6 +6,7 @@ import { Plus } from "lucide-react";
 import { FaHeart } from "react-icons/fa";
 import { HiArrowSmLeft, HiPencil } from "react-icons/hi";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 const UserProfile = () => {
   const [profileImage, setProfileImage] = useState("/assets/profileImage.jpg");
@@ -39,9 +40,24 @@ const UserProfile = () => {
   };
 
   const postData = [
-    { id: 1, image: "/assets/mypost1.jpg", postContent: "Design Meet", like: 67 },
-    { id: 2, image: "/assets/mypost3.jpg", postContent: "Working on a B2B...", like: 65 },
-    { id: 3, image: "/assets/mypost2.jpg", postContent: "Parachute ❤️", like: 65 },
+    {
+      id: 1,
+      image: "/assets/mypost1.jpg",
+      postContent: "Design Meet",
+      like: 67,
+    },
+    {
+      id: 2,
+      image: "/assets/mypost3.jpg",
+      postContent: "Working on a B2B...",
+      like: 65,
+    },
+    {
+      id: 3,
+      image: "/assets/mypost2.jpg",
+      postContent: "Parachute ❤️",
+      like: 65,
+    },
   ];
 
   const openEditModal = () => {
@@ -68,7 +84,6 @@ const UserProfile = () => {
     localStorage.setItem("bio", newBio);
 
     closeEditModal();
-   
   };
 
   useEffect(() => {
@@ -158,7 +173,10 @@ const UserProfile = () => {
             <h2 className="text-[24px] font-bold mb-5">My Posts</h2>
             <div className="grid grid-cols-2 gap-3 mb-20">
               {postData.map((posts) => (
-                <div key={posts.id} className="mb-4 break-inside-avoid relative">
+                <div
+                  key={posts.id}
+                  className="mb-4 break-inside-avoid relative"
+                >
                   <div
                     className="relative w-full xl:w-[70%]"
                     onClick={() => handleImageClick(posts.image)}
@@ -183,11 +201,11 @@ const UserProfile = () => {
               ))}
             </div>
           </div>
-
-          <div className="w-[50px] rounded-full bg-black grid justify-center items-center h-[50px] bottom-4 right-4 fixed z-10">
-            <Plus color="#ffffff" className="text-[24px] cursor-pointer" />
-          </div>
-
+          <Link href="/createPost">
+            <div className="w-[50px] rounded-full bg-black grid justify-center items-center h-[50px] bottom-4 right-4 fixed z-10">
+              <Plus color="#ffffff" className="text-[24px] cursor-pointer" />
+            </div>
+          </Link>
           {isModalOpen && (
             <div className="fixed inset-0 bg-black bg-opacity-75 flex justify-center items-center z-20">
               <div className="relative">
