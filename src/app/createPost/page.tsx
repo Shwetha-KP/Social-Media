@@ -9,16 +9,16 @@ import { RiVideoDownloadFill } from "react-icons/ri";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 
-// Define the type for photo objects
+
 type Photo = {
   preview: string;
-  [key: string]: any; // For other potential properties
+  [key: string]: any; 
 };
 
 const CreatePost = () => {
   const router = useRouter();
   const [text, setText] = useState("");
-  const [photos, setPhotos] = useState<Photo[]>([]); // Define photos state type
+  const [photos, setPhotos] = useState<Photo[]>([]); 
   const [video, setVideo] = useState<Photo | null>(null);
   const [isCameraOpen, setIsCameraOpen] = useState(false);
   const [cameraError, setCameraError] = useState("");
