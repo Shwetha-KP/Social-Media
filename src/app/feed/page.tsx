@@ -128,18 +128,18 @@ const FeedPage = () => {
             className="sm:w-[200px] sm:h-[200px] xs:w-[100px] rounded-full aspect-square object-cover"
           />
           <div className="w-[60%] flex flex-col justify-center">
-            <p className="text-lg text-gray-500 xs:text-sm">Welcome Back</p>
+            <p className="text-lg text-gray-500 xs:text-base">Welcome Back</p>
             <Link
               href="/userProfile"
-              className="text-2xl font-bold cursor-pointer xs:text-sm"
+              className="text-2xl font-bold cursor-pointer xs:text-base"
             >
               {name}
             </Link>
           </div>
         </div>
         <div className="w-full grid grid-cols-2 justify-end items-center">
-          <h1 className="font-bold text-2xl mt-12">Feeds</h1>
-          <div className="w-full flex justify-end relative">
+          <h1 className="font-bold text-2xl sm:mt-12">Feeds</h1>
+          <div className="w-full flex justify-end relative xs:mb-10">
             <Button className="transform transition-transform duration-300 hover:scale-105 bg-gradient-to-r from-gray-200  to-gray-400  hover:font-bold text-black absolute top-0 right-[140px] rounded-[20px] cursor-pointer">
               Recent
             </Button>
