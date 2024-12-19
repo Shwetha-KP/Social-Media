@@ -8,6 +8,7 @@ import { IoMdPhotos } from "react-icons/io";
 import { RiVideoDownloadFill } from "react-icons/ri";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import Link from "next/link";
 
 
 type Photo = {
@@ -197,12 +198,14 @@ const CreatePost = () => {
           )}
         </div>
       </div>
+      
       <Button
         className="w-[90%] rounded-lg bottom-4 mt-4"
         onClick={handleCreatePost}
       >
         CREATE
       </Button>
+     
 
       {isCameraOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
